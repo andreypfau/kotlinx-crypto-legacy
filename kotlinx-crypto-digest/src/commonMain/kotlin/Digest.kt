@@ -4,6 +4,8 @@ public interface Digest {
     public val algorithmName: String
     public val digestSize: Int
 
+    public fun update(input: Byte)
+
     public fun update(input: ByteArray): Unit =
         update(input, 0, input.size)
 

@@ -1,6 +1,6 @@
 import io.github.andreypfau.kotlinx.crypto.digest.Digest
 import io.github.andreypfau.kotlinx.crypto.hmac.HMac
-import io.github.andreypfau.kotlinx.crypto.sha256.Sha256Digest
+import io.github.andreypfau.kotlinx.crypto.sha256.Sha256DigestCommon
 import io.github.andreypfau.kotlinx.crypto.sha512.Sha512Digest
 import io.github.andreypfau.kotlinx.encoding.hex.hex
 import kotlin.test.Test
@@ -10,36 +10,36 @@ class HMacTest {
     @Test
     fun hMacSha256Test() {
         hMacTest(
-            digest = Sha256Digest(),
+            digest = Sha256DigestCommon(),
             key = hex(
                 "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f"
             ),
             input = "Sample message for keylen=blocklen".encodeToByteArray(),
             output = hex("8bb9a1db9806f20df7f77b82138c7914d174d59e13dc4d0169c9057b133e1d62"),
-            size = Sha256Digest.SIZE_BYTES
+            size = Sha256DigestCommon.SIZE_BYTES
         )
         hMacTest(
-            digest = Sha256Digest(),
+            digest = Sha256DigestCommon(),
             key = hex(
                 "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"
             ),
             input = "Sample message for keylen<blocklen".encodeToByteArray(),
             output = hex("a28cf43130ee696a98f14a37678b56bcfcbdd9e5cf69717fecf5480f0ebdf790"),
-            size = Sha256Digest.SIZE_BYTES
+            size = Sha256DigestCommon.SIZE_BYTES
         )
         hMacTest(
-            digest = Sha256Digest(),
+            digest = Sha256DigestCommon(),
             key = hex("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f60616263"),
             input = "Sample message for keylen=blocklen".encodeToByteArray(),
             output = hex("bdccb6c72ddeadb500ae768386cb38cc41c63dbb0878ddb9c7a38a431b78378d"),
-            size = Sha256Digest.SIZE_BYTES
+            size = Sha256DigestCommon.SIZE_BYTES
         )
         hMacTest(
-            digest = Sha256Digest(),
+            digest = Sha256DigestCommon(),
             key = byteArrayOf(),
             input = "message".encodeToByteArray(),
             output = hex("eb08c1f56d5ddee07f7bdf80468083da06b64cf4fac64fe3a90883df5feacae4"),
-            size = Sha256Digest.SIZE_BYTES
+            size = Sha256DigestCommon.SIZE_BYTES
         )
     }
 

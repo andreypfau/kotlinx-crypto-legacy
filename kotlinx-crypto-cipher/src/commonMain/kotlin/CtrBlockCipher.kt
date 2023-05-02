@@ -2,8 +2,6 @@ package io.github.andreypfau.kotlinx.crypto.cipher
 
 import kotlin.experimental.xor
 
-private const val STREAM_BUF_SIZE = 512
-
 public class CtrBlockCipher(
     public val cipher: BlockCipher,
     iv: ByteArray
@@ -17,12 +15,7 @@ public class CtrBlockCipher(
             "IV length must equal block size, expected: ${cipher.blockSize}, actual: ${iv.size}"
         }
         ctr = iv.copyOf()
-        val bufSize = if (STREAM_BUF_SIZE < cipher.blockSize) {
-            cipher.blockSize
-        } else {
-            STREAM_BUF_SIZE
-        }
-        buffer = ByteArray(bufSize)
+        buffer = ByteArray(cipher.blockSize)
     }
 
     override fun encryptIntoByteArray(

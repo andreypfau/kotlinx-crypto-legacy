@@ -1,7 +1,10 @@
 package io.github.andreypfau.kotlinx.crypto.sha512
 
+import io.github.andreypfau.kotlinx.crypto.digest.Digest
 import io.github.andreypfau.kotlinx.crypto.digest.LongDigest
 import io.github.andreypfau.kotlinx.encoding.binary.Binary.storeLongAt
+
+public expect class Sha512Digest public constructor() : Digest
 
 /**
  * FIPS 180-2 implementation of SHA-512.
@@ -14,7 +17,7 @@ import io.github.andreypfau.kotlinx.encoding.binary.Binary.storeLongAt
  * SHA-512 1024   64    512
  * ```
  */
-public class Sha512Digest : LongDigest() {
+public class Sha512DigestCommon : LongDigest() {
     init {
         reset()
     }

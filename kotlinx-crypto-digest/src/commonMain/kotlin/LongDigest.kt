@@ -20,7 +20,7 @@ public abstract class LongDigest : Digest {
     protected var h7: Long = 0L
     protected var h8: Long = 0L
 
-    public fun update(input: Byte) {
+    public override fun update(input: Byte) {
         xBuf[xBufOff++] = input
         if (xBufOff == xBuf.size) {
             processWord(xBuf, 0)

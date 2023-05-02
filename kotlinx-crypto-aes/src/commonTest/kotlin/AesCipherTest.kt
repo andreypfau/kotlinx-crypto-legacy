@@ -144,7 +144,7 @@ class AesCipherTest {
         input: ByteArray,
         output: ByteArray
     ) {
-        val cipher = AesCipher(key = key, decrypt = false)
+        val cipher = AesCipher(key)
         val actual = cipher.encryptToByteArray(input)
         assertContentEquals(
             output,

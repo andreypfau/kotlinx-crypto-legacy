@@ -1,6 +1,6 @@
 import io.github.andreypfau.kotlinx.crypto.digest.Digest
 import io.github.andreypfau.kotlinx.crypto.pbkdf2.pbkdb2
-import io.github.andreypfau.kotlinx.crypto.sha256.Sha256Digest
+import io.github.andreypfau.kotlinx.crypto.sha256.Sha256DigestCommon
 import io.github.andreypfau.kotlinx.encoding.hex.hex
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -8,7 +8,7 @@ import kotlin.test.assertContentEquals
 class Pbkdf2Test {
     @Test
     fun pbkdf2HmacSha256Test1() = pbkdf2Test(
-        digest = Sha256Digest(),
+        digest = Sha256DigestCommon(),
         password = "password".encodeToByteArray(),
         salt = "salt".encodeToByteArray(),
         iterationCount = 1,
@@ -17,7 +17,7 @@ class Pbkdf2Test {
 
     @Test
     fun pbkdf2HmacSha256Test2() = pbkdf2Test(
-        digest = Sha256Digest(),
+        digest = Sha256DigestCommon(),
         password = "password".encodeToByteArray(),
         salt = "salt".encodeToByteArray(),
         iterationCount = 2,
@@ -26,7 +26,7 @@ class Pbkdf2Test {
 
     @Test
     fun pbkdf2HmacSha256Test3() = pbkdf2Test(
-        digest = Sha256Digest(),
+        digest = Sha256DigestCommon(),
         password = "password".encodeToByteArray(),
         salt = "salt".encodeToByteArray(),
         iterationCount = 4096,
@@ -35,7 +35,7 @@ class Pbkdf2Test {
 
     @Test
     fun pbkdf2HmacSha256Test4() = pbkdf2Test(
-        digest = Sha256Digest(),
+        digest = Sha256DigestCommon(),
         password = "passwordPASSWORDpassword".encodeToByteArray(),
         salt = "saltSALTsaltSALTsaltSALTsaltSALTsalt".encodeToByteArray(),
         iterationCount = 4096,
@@ -44,7 +44,7 @@ class Pbkdf2Test {
 
     @Test
     fun pbkdf2HmacSha256Test5() = pbkdf2Test(
-        digest = Sha256Digest(),
+        digest = Sha256DigestCommon(),
         password = "pass\u0000word".encodeToByteArray(),
         salt = "sa\u0000lt".encodeToByteArray(),
         iterationCount = 4096,

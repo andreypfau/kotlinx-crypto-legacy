@@ -1,4 +1,5 @@
 import io.github.andreypfau.kotlinx.crypto.aes.AesCipher
+import io.github.andreypfau.kotlinx.crypto.aes.AesCipherCommon
 import io.github.andreypfau.kotlinx.crypto.cipher.CtrBlockCipher
 import io.github.andreypfau.kotlinx.encoding.hex.hex
 import kotlin.test.Test
@@ -66,6 +67,10 @@ class AesCtrTest {
         output: ByteArray
     ) {
         val aes = AesCipher(key)
-        assertContentEquals(output, CtrBlockCipher(aes, iv).encryptToByteArray(input))
+        val aesActual = CtrBlockCipher(aes, iv).encryptToByteArray(input)
+        assertContentEquals(output, aesActual, "\nexpected: ${hex(output)}\n  actual: ${hex(aesActual)}")
+        val commonAes = AesCipherCommon(key)
+        val commonAesActual = CtrBlockCipher(commonAes, iv).encryptToByteArray(input)
+        assertContentEquals(output, commonAesActual, "\nexpected: ${hex(output)}\n  actual: ${hex(commonAesActual)}")
     }
 }

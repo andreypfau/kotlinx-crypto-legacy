@@ -2,11 +2,11 @@ package io.github.andreypfau.kotlinx.crypto.aes
 
 import io.github.andreypfau.kotlinx.crypto.cipher.BlockCipher
 
-public class AesCipher(
+public expect class AesCipher public constructor(key: ByteArray) : BlockCipher
+
+public class AesCipherCommon(
     key: ByteArray,
-    decrypt: Boolean
 ) : BlockCipher {
-    public constructor(key: ByteArray) : this(key, decrypt = true)
 
     private val encryptKey: IntArray
     private val decryptKey: IntArray
@@ -17,11 +17,11 @@ public class AesCipher(
         }
         val n = key.size + 28
         encryptKey = IntArray(n)
-        decryptKey = IntArray(if (decrypt) n else 0)
+        decryptKey = IntArray(n)
         aesExpandKey(key, encryptKey, decryptKey)
     }
 
-    override val algorithmName: String get() = "AES"
+    override val algorithmName: String get() = ALGORITHM_NAME
 
     override val blockSize: Int get() = BLOCK_SIZE
 
@@ -43,6 +43,7 @@ public class AesCipher(
     }
 
     public companion object {
+        public const val ALGORITHM_NAME: String = "AES"
         public const val BLOCK_SIZE: Int = 16
     }
 }

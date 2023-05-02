@@ -8,6 +8,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinMultiplatformPlugin
 plugins {
     kotlin("multiplatform") version "1.8.20" apply false
     id("maven-publish")
+    id("org.jetbrains.kotlinx.benchmark") version "0.4.4" apply false
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.8.20" apply false
     signing
 }
 
@@ -47,7 +49,11 @@ subprojects {
             browser()
             nodejs()
         }
+        wasm {
+            d8()
+        }
 
+        wasm()
         macosArm64()
         macosX64()
         ios()

@@ -9,7 +9,7 @@ public abstract class GeneralDigest : Digest {
     private var xBuffOff = 0
     private var byteCount = 0
 
-    public fun update(input: Byte) {
+    public override fun update(input: Byte) {
         xBuf[xBuffOff++] = input
         if (xBuffOff == xBuf.size) {
             processWord(xBuf, 0)
