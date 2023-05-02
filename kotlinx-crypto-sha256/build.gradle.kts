@@ -18,6 +18,11 @@ kotlin {
                 implementation("io.github.andreypfau:kotlinx-encoding-binary:1.0-SNAPSHOT")
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation("io.github.andreypfau:kotlinx-encoding-hex:1.0-SNAPSHOT")
+            }
+        }
         val jvmMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.4")

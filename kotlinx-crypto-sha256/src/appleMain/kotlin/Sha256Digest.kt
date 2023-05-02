@@ -34,10 +34,12 @@ public actual class Sha256Digest : Digest {
 
     override fun build(output: ByteArray, offset: Int): ByteArray {
         CC_SHA256_Final(output.asUByteArray().refTo(offset), context.ptr)
+        reset()
         return output
     }
 
     override fun reset() {
+        nativeHeap.free(context)
         context = init()
     }
 }
